@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Some website</title>
+	</head>
+	<body>
+		<h1>we'll be right back</h1>
+		<p>
+			This site is currently being updated.
+		</p>
+	</body>
+</html>
+const config={ MYSQL_REPLICATION_DATABASE: 'TSVAS',
+    MYSQL_REPLICATION_HOST: '10.0.0.566',
+    MYSQL_REPLICATION_USER: 'david',
+    MYSQL_REPLICATION_PASS: 'uPa5YdmTuKPJf3u',
+    MYSQL_STAGING_DATABASE: 'TSVAS',
+    MYSQL_STAGING_HOST: 'localhost',
+    MYSQL_STAGING_USER: 'root',
+    MYSQL_STAGING_PASS: 'Kanashimi7' };
+
+let sanitize = (tableName, sanitizeObj) => {
+    return new Promise((resolve, reject) => {
+        for (var i in sanitizeObj) {
+            console.log(sanitizeObj[i].type);
+            if (sanitizeObj[i].type === 'CLEAR') {
+                console.log("starting clear column");
+                clearColumnSanitise(tableName, sanitizeObj[i].targetColumn);
+                console.log(result);
+            } else if (sanitizeObj[i].type === 'INT') {
+                console.log("starting randomize int column");
+                randomizeIntColumn(tableName, sanitizeObj[i].targetColumn, sanitizeObj[i].intMin, sanitizeObj[i].intMax);
+                console.log(result);
+            }
+        }
+
+        resolve({success:'Done'});
+    });
